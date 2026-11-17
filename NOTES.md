@@ -1,0 +1,16 @@
+- Ex 3.1: MySQL container up, app connects via env vars
+- Ex 3.0: cloned java-mysql-app; app reads DB_USER, DB_PWD, DB_SERVER, DB_NAME
+- Ex 3.1: MySQL 8.0 running in Docker on 3306
+- Ex 3.1: Java app connected to MySQL container via env vars; edit + save verified
+- Ex 3.2: phpMyAdmin on 8083, reaches MySQL by container name over db-net
+- Ex 3.3: Compose runs MySQL + phpMyAdmin; named volume keeps data through down/up
+- Ex 3.4: multi-stage Dockerfile, 500MB image, runs as non-root appuser, connects via DB_SERVER=mysql
+- Ex 3.5: docker-hosted repo on Nexus (port 8085), pushed java-mysql-app:1.0 as least-privilege docker-publisher
+- Ex 3.6: app added to Compose from Nexus image; MySQL healthcheck gates app start; all values from .env
+- Ex 3.7a: Nexus on EC2 t3.medium (us-east-1); fixed IPv6-vs-IPv4 SG rule; port 8081 reachable from My IP only
+- Ex 3.7b: cloud docker-hosted on :8085; debugged 403 -> Nexus wasn't listening on the port (fix: HTTP connector saved); insecure-registry set on Mac
+- Ex 3.7c: app server pulls from Nexus via PRIVATE IP; nexus-sg 8085 allows app-sg (SG-to-SG); pull-only docker-deploy user
+- Ex 3.7d: push timeouts traced to Nexus disk 69% full (8GB default); grew EBS to 30GB online (growpart + resize2fs)
+- Ex 3.7e: pushed 1.2 (amd64, HOST fixed); 'not authorized' = logged in as pull-only docker-deploy; fixed with logout + login -u docker-publisher
+- Ex 3.7f: Elastic IP 54.163.68.209 on app-server; HOST baked into image 1.3; layer-commit timeouts are slow confirms, retry succeeds
+- Ex 3.8: app + phpMyAdmin reachable on EC2; edit/save + persistence through down/up verified
